@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getDogs } from "../actions";
 import Card from "./Card";
+import Paginado from "./Paginado";
 
 export default function Home() {
   const dispatch = useDispatch();
   const allDogs = useSelector((state) => state.dogs);
+  const [page, setPage] = useState(1);
+  const lastIndex = page * 8;
+  const firstIndex = lastIndex - 8;
+  const pages = allDogs.slice(firstIndex, lastIndex);
+  // const [order, setOrder] = useState("ASC");
+  // const [filtro, setFiltro] = useState("");
 
   useEffect(() => {
     dispatch(getDogs());
@@ -16,6 +23,10 @@ export default function Home() {
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(getDogs());
+  };
+
+  const paged = (nro) => {
+    setPage(nro);
   };
 
   return (
@@ -36,10 +47,16 @@ export default function Home() {
           <option value="">Razas</option>
         </select>
         <select>
-          <option value="">Orden alfabético</option>
-          <option value="">Peso</option>
+          <option value="ASC">Ascendente</option>
+          <option value="DESC">Descendente</option>
         </select>
-        {allDogs?.map((dog) => {
+        <select>
+          <option value="order">Orden alfabético</option>
+          <option value="weight">Peso</option>
+        </select>
+        <h2>Lista de perros</h2>
+        {<Paginado allDogs={allDogs.length} paged={paged} />}
+        {pages?.map((dog) => {
           return (
             <fragment>
               <Link to={"/dogs/" + dog.id}>
