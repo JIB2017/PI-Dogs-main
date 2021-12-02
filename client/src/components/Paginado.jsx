@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Paginado({ allDogs, paged }) {
+export default function Paginado({ allDogs, paged, page }) {
   const numberPages = [];
 
   for (let i = 0; i < Math.ceil(allDogs / 8); i++) {
@@ -9,15 +9,15 @@ export default function Paginado({ allDogs, paged }) {
 
   return (
     <nav>
-      <ul className="">
+      <>
         {numberPages?.map((nro) => {
           return (
-            <li className="total-amount" key={nro}>
-              <a onClick={() => paged(nro)}>{nro}</a>
+            <li className="pagination" key={nro}>
+              {page === nro ? <a class="active" onClick={() => paged(nro)}  >{ nro }</a> : <a onClick={() => paged(nro)}  >{ nro }</a>}
             </li>
           );
         })}
-      </ul>
+      </>
     </nav>
   );
 }

@@ -29,7 +29,7 @@ code {
   justify-content: center;
 }
 .total-amount {
-  color: var(--clr-white);
+  color: white;
   margin-bottom: 0;
   font-size: 1.25rem;
 }
@@ -48,22 +48,68 @@ code {
 }
 .img-container {
   position: relative;
-  width: 350px;
-  height: 350px;
+  width: 250px;
+  height: 250px;
   border-radius: 5%;
   margin: 0 auto;
   margin-bottom: 1.5rem;
 }
 .person-img {
-  width: 100%;
+  width: 30%;
   display: block;
-  height: 100%;
+  height: 30%;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 15%;
   position: relative;
 }
 .item-info {
   display: flex;
   justify-content: space-between;
   border-bottom: 0.5px dotted var(--clr-grey-5);
+}
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: white;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 50%;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.gallery {
+  display: grid;
+  gap: 1rem;
+  grid-auto-rows: 22rem;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+  border-radius: 30px;
+}
+
+.color-text {
+  color: black;
 }

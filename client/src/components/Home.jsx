@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { getDogs } from "../actions";
 import Card from "./Card";
 import Paginado from "./Paginado";
@@ -30,9 +29,13 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <div>
-        <h1>Dog World</h1>
+    <div className="total-amount">
+      <h1>Dog World</h1>
+      <div className="busqueda">
+        buen dato crack
+        <input type="text" name="busqueda" />
+      </div>
+      <div className="button">
         <button
           onClick={(e) => {
             handleClick(e);
@@ -55,20 +58,19 @@ export default function Home() {
           <option value="weight">Peso</option>
         </select>
         <h2>Lista de perros</h2>
-        {<Paginado allDogs={allDogs.length} paged={paged} />}
+        {<Paginado allDogs={allDogs.length} paged={paged} page={page} />}
         {pages?.map((dog) => {
           return (
-            <fragment>
-              <Link to={"/dogs/" + dog.id}>
-                <Card
-                  image={dog.image}
-                  name={dog.name}
-                  temperament={dog.temperament}
-                  weight={dog.weight}
-                  key={dog.id}
-                />
-              </Link>
-            </fragment>
+            <div>
+              <Card
+                id={dog.id}
+                image={dog.image}
+                name={dog.name}
+                temperament={dog.temperament}
+                weight={dog.weight}
+                key={dog.id}
+              />
+            </div>
           );
         })}
       </div>

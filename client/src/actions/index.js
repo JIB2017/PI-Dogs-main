@@ -9,3 +9,13 @@ export function getDogs() {
     });
   };
 }
+
+export function getDogDetail(id) {
+  return async function (dispatch) {
+    var json = await axios.get(`http://localhost:3001/dogs/${id}`);
+    return dispatch({
+      type: "GET_DOG_DETAIL",
+      payload: json.data,
+    });
+  };
+}
