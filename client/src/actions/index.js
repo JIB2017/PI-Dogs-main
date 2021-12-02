@@ -29,3 +29,20 @@ export function getDogName(name) {
     });
   };
 }
+
+export function getTemperaments() {
+  return async function (dispatch) {
+    var json = await axios.get("http://localhost:3001/temperament");
+    return dispatch({
+      type: "GET_TEMPERAMENTS",
+      payload: json.data,
+    });
+  };
+}
+
+export function postDog(form) {
+  return async function (dispatch) {
+    var json = await axios.post("http://localhost:3001/dog", form)
+    return json
+  }
+}

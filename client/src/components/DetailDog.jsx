@@ -13,10 +13,10 @@ export default function DetailDog() {
 
   useEffect(() => {
     dispatch(getDogDetail(id));
-  }, [dispatch]);
+  }, []);
 
   return (
-    <main>
+    <div>
       <div key={dog[0].id}>
         <img
           className="img-container"
@@ -34,6 +34,6 @@ export default function DetailDog() {
           <button>Volver al Home</button>
         </Link>
       </div>
-    </main>
+    </div>
   );
 }

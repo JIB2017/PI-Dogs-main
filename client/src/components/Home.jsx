@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getDogs } from "../actions";
 import Card from "./Card";
 import Paginado from "./Paginado";
@@ -20,26 +21,27 @@ export default function Home() {
     dispatch(getDogs());
   }, [dispatch]);
 
-  const handleClick = (e) => {
+  const handleClickDogs = (e) => {
     e.preventDefault();
     dispatch(getDogs());
   };
 
-  const paged = (nro) => {
+    const paged = (nro) => {
     setPage(nro);
   };
 
   return (
     <div className="total-amount">
       <h1>Dog World</h1>
-      <div className="busqueda">
+      <Link to="/dog">
+        <button>Crear perro</button>
+      </Link>
+      <div>
         <SearchBar />
       </div>
       <div className="button">
         <button
-          onClick={(e) => {
-            handleClick(e);
-          }}
+          onClick={handleClickDogs}
         >
           Mostrar todos los perros
         </button>
@@ -61,7 +63,7 @@ export default function Home() {
         {<Paginado allDogs={allDogs.length} paged={paged} page={page} />}
         {pages?.map((dog) => {
           return (
-            <div className="grid-container">
+            <div>
               <Card
                 id={dog.id}
                 image={dog.image}

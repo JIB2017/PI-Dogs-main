@@ -5,7 +5,7 @@ export default function Card({ id, image, name, temperament, weight }) {
   return (
     <div className="grid-container">
       <div key={id}>
-        <Link to={`/dogs/${id}`}>
+        <Link to={`/home/${id}`}>
           <img
             className="img-container"
             src={image}
