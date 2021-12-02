@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDogs } from "../actions";
 import Card from "./Card";
 import Paginado from "./Paginado";
+import SearchBar from "./SearchBar";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -32,8 +33,7 @@ export default function Home() {
     <div className="total-amount">
       <h1>Dog World</h1>
       <div className="busqueda">
-        buen dato crack
-        <input type="text" name="busqueda" />
+        <SearchBar />
       </div>
       <div className="button">
         <button
@@ -61,7 +61,7 @@ export default function Home() {
         {<Paginado allDogs={allDogs.length} paged={paged} page={page} />}
         {pages?.map((dog) => {
           return (
-            <div>
+            <div className="grid-container">
               <Card
                 id={dog.id}
                 image={dog.image}

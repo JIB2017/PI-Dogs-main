@@ -17,6 +17,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         dogDetail: action.payload,
       };
+    case "GET_DOG_NAME":
+      return {
+        ...state,
+        dogs: action.payload,
+      };
     default:
       return state;
   }
