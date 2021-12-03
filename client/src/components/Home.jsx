@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getDogs } from "../actions";
+import { getDogs, filterByTemperament } from "../actions";
 import Card from "./Card";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
@@ -10,6 +10,7 @@ import SearchBar from "./SearchBar";
 export default function Home() {
   const dispatch = useDispatch();
   const allDogs = useSelector((state) => state.dogs);
+  const allTemps = useSelector((state) => state.temperaments)
   const [page, setPage] = useState(1);
   const lastIndex = page * 8;
   const firstIndex = lastIndex - 8;
@@ -25,6 +26,11 @@ export default function Home() {
     e.preventDefault();
     dispatch(getDogs());
   };
+
+  const handleFiltered = (e) => {
+    dispatch(filterByTemperament(e.target.value))
+    console.log(e.target.value)
+  }
 
   const paged = (nro) => {
     setPage(nro);
@@ -47,14 +53,17 @@ export default function Home() {
         </button>
       </div>
       <div>
-        <select>
-          <option value="">Elegir filtro</option>
-          <option value="">Temperamentos</option>
-          <option value="">Razas</option>
+        <select onChange={(e) => handleFiltered(e)}>
+          <option value="Todos" >Todos</option>
+          {allTemps.map((t) => {
+            return (
+              <option value={t.name} key={t.id} >{t.name}</option>
+            )
+          })}
         </select>
         <select>
-          <option value="order">Orden alfabético</option>
-          <option value="weight">Peso</option>
+          <option value="order">Ordear alfabéticamente</option>
+          <option value="weight">Ordenar por peso</option>
         </select>
         <select>
           <option value="">Elegir orden</option>

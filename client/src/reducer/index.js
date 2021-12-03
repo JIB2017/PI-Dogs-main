@@ -1,8 +1,7 @@
 const initialState = {
-  allDogs: [],
   dogs: [],
-  dogDetail: [],
-  temperaments: []
+  allDogs: [],
+  temperaments: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -16,22 +15,33 @@ function rootReducer(state = initialState, action) {
     case "GET_DOG_DETAIL":
       return {
         ...state,
-        dogDetail: action.payload,
+        dogs: action.payload,
       };
     case "GET_DOG_NAME":
       return {
         ...state,
         dogs: action.payload,
       };
-      case "GET_TEMPERAMENTS":
-        return {
-          ...state,
-          temperaments: action.payload
-        }
-      case "POST_DOG":
-        return {
-          ...state,
-        }
+    case "GET_TEMPERAMENTS":
+      return {
+        ...state,
+        temperaments: action.payload,
+      };
+    case "POST_DOG":
+      return {
+        ...state,
+      };
+    case "FILTER_BY_TEMP":
+      const allDogs = state.dogs;
+      const allTemps = state.temperaments;
+      const tempsFiltered =
+        action.payload === "Todos"
+          ? allDogs
+          : allDogs
+      return {
+        ...state,
+        dogs: tempsFiltered,
+      };
     default:
       return state;
   }

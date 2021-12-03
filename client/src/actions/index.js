@@ -46,3 +46,11 @@ export function postDog(form) {
     return json
   }
 }
+
+export function filterByTemperament(payload) {
+    return {
+      type: "FILTER_BY_TEMP",
+      payload,
+    };
+  
+}
