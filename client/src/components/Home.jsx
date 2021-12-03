@@ -26,7 +26,7 @@ export default function Home() {
     dispatch(getDogs());
   };
 
-    const paged = (nro) => {
+  const paged = (nro) => {
     setPage(nro);
   };
 
@@ -39,7 +39,7 @@ export default function Home() {
       <div>
         <SearchBar />
       </div>
-      <div className="button">
+      <div>
         <button
           onClick={handleClickDogs}
         >
@@ -48,22 +48,24 @@ export default function Home() {
       </div>
       <div>
         <select>
+          <option value="">Elegir filtro</option>
           <option value="">Temperamentos</option>
           <option value="">Razas</option>
-        </select>
-        <select>
-          <option value="ASC">Ascendente</option>
-          <option value="DESC">Descendente</option>
         </select>
         <select>
           <option value="order">Orden alfabético</option>
           <option value="weight">Peso</option>
         </select>
+        <select>
+          <option value="">Elegir orden</option>
+          <option value="ASC">Ascendente</option>
+          <option value="DESC">Descendente</option>
+        </select>
         <h2>Lista de perros</h2>
         {<Paginado allDogs={allDogs.length} paged={paged} page={page} />}
         {pages?.map((dog) => {
           return (
-            <div>
+            <div key={dog.id}>
               <Card
                 id={dog.id}
                 image={dog.image}
