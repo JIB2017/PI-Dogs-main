@@ -73,13 +73,11 @@ export default function CreateDog() {
                     </select>
                     <button type="submit" className={estilos.btnSubmit}>Crear</button>
                 </form>
-                <div className="">
+                <p>
                     <ul>
-                        <h2>
-                            {input.temperament.map(t => t + " ,")}
-                        </h2>
+                        <li>{input.temperament.map(t => t + " ")}</li>
                     </ul>
-                </div>
+                </p>
             </div>
             <div>
                 <Link to="/home">

@@ -8,11 +8,12 @@ import {
   filterByTemperament,
   filterByOrder,
   filterByWeight,
+  filterByCreated,
 } from "../actions";
 import Card from "./Card";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
-import estilos from "./home.module.css"
+import estilos from "./home.module.css";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -41,20 +42,29 @@ export default function Home() {
   };
   // Filtrar por temperamento
   const handleFiltered = (e) => {
-    dispatch(filterByTemperament(e.target.value));
+    const value = e.target.value;
+    if (value !== "todos") dispatch(filterByTemperament(e.target.value));
+    else dispatch(getDogs());
   };
   // Ordenarlos alfabéticamente
   const handleOrder = (e) => {
-    e.preventDefault();
-    dispatch(filterByOrder(e.target.value));
+    const value = e.target.value;
+    if (value !== "nada") dispatch(filterByOrder(e.target.value));
     // setPage(1);
     setOrder(`Ordenado ${e.target.value}`);
   };
   // Ordenarlos por peso
   const handleWeight = (e) => {
-    e.preventDefault()
-    dispatch(filterByWeight(e.target.value))
-  }
+    const value = e.target.value;
+    if (value !== "nada") dispatch(filterByWeight(e.target.value));
+  };
+
+  const handleApi = (e) => {
+    const value = e.target.value;
+    value === "todos"
+      ? dispatch(getDogs())
+      : dispatch(filterByCreated(e.target.value));
+  };
   const paged = (nro) => {
     setPage(nro);
   };
@@ -69,11 +79,20 @@ export default function Home() {
       </Link>
       <h1>Dog World</h1>
       <div className="general">
-        <button className={estilos.btn} onClick={handleClickDogs}>Refresh</button>
+        <button className={estilos.btn} onClick={handleClickDogs}>
+          Refresh
+        </button>
       </div>
       <div>
+        {/* MOSTRAR CREADOS O TODOS */}
+        <select className={estilos.control} onChange={handleApi}>
+          <option value="todos">Mostrar todos</option>
+          <option value="created">Creados</option>
+          <option value="api">Solo API</option>
+        </select>
+        {/* MOSTRAR POR TEMPERAMENTOS */}
         <select className={estilos.control} onChange={handleFiltered}>
-          <option value="Todos">Todos</option>
+          <option value="todos">Todos</option>
           {allTemps.map((t) => {
             return (
               <option value={t.name} key={t.id}>
@@ -82,13 +101,15 @@ export default function Home() {
             );
           })}
         </select>
+        {/* ORDEN ALFABÉTICO */}
         <select className={estilos.control} onChange={handleOrder}>
-          <option value="Nada">Ordenar alfabéticamente</option>
+          <option value="nada">Orden alfabético</option>
           <option value="A-Z">Ascendente</option>
           <option value="Z-A">Descendente</option>
         </select>
+        {/* ORDEN POR PESO */}
         <select className={estilos.control} onChange={handleWeight}>
-          <option value="">Odernar por peso</option>
+          <option value="nada">Odernar por peso</option>
           <option value="ASC">Ascendente</option>
           <option value="DESC">Descendente</option>
         </select>
