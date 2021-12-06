@@ -11,8 +11,6 @@ export default function Card({ id, image, name, temperament, weight }) {
             className={estilos.imgContainer}
             src={image}
             alt={name}
-            width="100px"
-            height="100px"
           />
         </Link>
         <div className={estilos.desc}>
