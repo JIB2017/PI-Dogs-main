@@ -32,7 +32,7 @@ export default function DetailDog() {
       </div>
       <div>
         <Link to="/home">
-          <button className="button-28">Volver al Home</button>
+          <button className={estilos.btn}>Volver al Home</button>
         </Link>
       </div>
     </div>
