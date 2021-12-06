@@ -42,15 +42,36 @@ export function getTemperaments() {
 
 export function postDog(form) {
   return async function (dispatch) {
-    var json = await axios.post("http://localhost:3001/dog", form)
-    return json
-  }
+    var json = await axios.post("http://localhost:3001/dog", form);
+    return json;
+  };
 }
 
 export function filterByTemperament(payload) {
-    return {
-      type: "FILTER_BY_TEMP",
-      payload,
-    };
-  
+  return {
+    type: "FILTER_BY_TEMP",
+    payload,
+  };
+}
+
+export function filterByCreated(payload) {
+  return {
+    type: "FILTER_BY_CREATED",
+    payload,
+  };
+}
+
+export function filterByOrder(payload) {
+  return {
+    type: "FILTER_BY_ORDER",
+    payload,
+  };
+}
+
+export function filterByWeight(payload) {
+  console.log(payload.charAt(0))
+  return {
+    type: "FILTER_BY_WEIGHT",
+    payload,
+  };
 }

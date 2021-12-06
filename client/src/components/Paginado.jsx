@@ -1,4 +1,5 @@
 import React from "react";
+import estilos from "./paginado.module.css"
 
 export default function Paginado({ allDogs, paged, page }) {
   const numberPages = [];
@@ -12,8 +13,8 @@ export default function Paginado({ allDogs, paged, page }) {
       <>
         {numberPages?.map((nro) => {
           return (
-            <li className="pagination" key={nro}>
-              {page === nro ? <a class="active" onClick={() => paged(nro)}  >{ nro }</a> : <a onClick={() => paged(nro)}  >{ nro }</a>}
+            <li className={estilos.pagination} key={nro}>
+              {page === nro ? <a className={estilos.active} onClick={() => paged(nro)}  >{ nro }</a> : <a onClick={() => paged(nro)}  >{ nro }</a>}
             </li>
           );
         })}

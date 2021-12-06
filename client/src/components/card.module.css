@@ -1,0 +1,36 @@
+.gridcontainer {
+  display: flex;
+  justify-content: normal;
+  float: left;
+  padding: 10px;
+  width: 250px;
+  max-height: 10%;
+  margin: 15px;
+}
+
+.gridcontainer > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  flex-direction: column;
+  text-align: center;
+  font-size: 30px;
+  border-radius: 30px;
+}
+
+.gridcontainer:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.colortext {
+  color: black;
+}
+
+.imgContainer {
+  width: 280px;
+  height: auto;
+  border-radius: 3%;
+}
+
+div.desc {
+  padding: 0px;
+}

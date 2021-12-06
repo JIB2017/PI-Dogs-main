@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTemperaments, postDog } from "../actions"
 import { Link } from "react-router-dom";
+import estilos from "./createDog.module.css"
 
 
 export default function CreateDog() {
@@ -54,45 +55,37 @@ export default function CreateDog() {
     return (
         <div>
             <div>
-                <form className="form" onSubmit={(e) => handleSubmit(e)}>
-                    <label>Nombre: </label>
-                    <input type="text" name="name" placeholder="Nombre del perro" value={input.name} onChange={(e) => handleChange(e)} ></input>
-                    <label>Altura mínima: </label>
-                    <input type="text" name="min-height" placeholder="Altura mínima" value={input.minHeight} onChange={(e) => handleChange(e)} ></input>
-                    <label>Altura máxima: </label>
-                    <input type="text" name="max-height" placeholder="Altura máxima" value={input.maxHeight} onChange={(e) => handleChange(e)} ></input>
-                    <label>Peso mínimo: </label>
-                    <input type="text" name="min-weight" placeholder="Peso mínimo" value={input.minWeight} onChange={handleChange} ></input>
-                    <label>Peso máximo: </label>
-                    <input type="text" name="max-weight" placeholder="Peso máximo" value={input.maxWeight} onChange={handleChange} ></input>
-                    <label>Años de vida: </label>
-                    <input type="text" name="lifespan" placeholder="Años de vida" value={input.lifeSpan} onChange={handleChange} ></input>
-                    <label>Temperamentos: </label>
-                    <select>
+                <form className={estilos.form} onSubmit={handleSubmit}>
+                    <h1>Formulario</h1>
+                    <input type="text" name="name" placeholder="Nombre del perro" className={estilos.control} value={input.name} onChange={handleChange} ></input>
+                    <input type="text" name="min-height" placeholder="Altura mínima" className={estilos.control} value={input.minHeight} onChange={handleChange} ></input>
+                    <input type="text" name="max-height" placeholder="Altura máxima" className={estilos.control} value={input.maxHeight} onChange={handleChange} ></input>
+                    <input type="text" name="min-weight" placeholder="Peso mínimo" className={estilos.control} value={input.minWeight} onChange={handleChange} ></input>
+                    <input type="text" name="max-weight" placeholder="Peso máximo" className={estilos.control} value={input.maxWeight} onChange={handleChange} ></input>
+                    <input type="text" name="lifespan" placeholder="Años de vida" className={estilos.control} value={input.lifeSpan} onChange={handleChange} ></input>
+                    <select className={estilos.select} onChange={handleInputSelect}>
+                        <option>Elige una o varias personalidades</option>
                         {temperaments?.map((t) => {
                             return (
-                                <option value={t.name} onChange={handleInputSelect} key={t.id}>{t.name}</option>
+                                <option value={t.name} key={t.id}>{t.name}</option>
                             )
                         })}
                     </select>
-                    <div>
-                        <ul>
-                            <li>
-                                {input.temperament.map(t => t + " , ")}
-                            </li>
-                        </ul>
-                    </div>
-                    <button type="submit">Crear</button>
+                    <button type="submit" className={estilos.btnSubmit}>Crear</button>
                 </form>
+                <div className="">
+                    <ul>
+                        <h2>
+                            {input.temperament.map(t => t + " ,")}
+                        </h2>
+                    </ul>
+                </div>
             </div>
             <div>
                 <Link to="/home">
-                <button>Volver al Home</button>
+                <button className={estilos.btn}>Volver al Home</button>
                 </Link>
             </div>
         </div>
-
-
-        
     )
 }

@@ -1,9 +1,8 @@
 body {
-  background: url(./originalBackground.jpg) no-repeat center center fixed;
+  background: url(./background.jpg) no-repeat center center fixed;
   background-size: cover;
   width: 100vw;
   height: 100vh;
-  /* grid-template-columns: repeat(autofill, minmax(15rem, 1fr)); */
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -16,109 +15,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-.amount-container {
-  position: absolute;
-  top: 5.85rem;
-  right: -0.85rem;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 50%;
-  background: var(--clr-primary-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 .total-amount {
   color: white;
   margin-bottom: 0;
   font-size: 1.25rem;
-}
-.photo {
-  object-fit: cover;
-  height: 200px;
-  width: 100%;
-  border: 0.25rem solid var(--clr-gold);
-  border-radius: var(--radius);
-  display: block;
-}
-.menu-item {
-  display: grid;
-  gap: 1rem 2rem;
-  max-width: 25rem;
-}
-.img-container {
-  position: relative;
-  width: 250px;
-  height: 250px;
-  border-radius: 5%;
-  margin: 0 auto;
-  margin-bottom: 1.5rem;
-}
-.person-img {
-  width: 30%;
-  display: block;
-  height: 30%;
-  object-fit: cover;
-  border-radius: 15%;
-  position: relative;
-}
-.item-info {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 0.5px dotted var(--clr-grey-5);
-}
-.pagination {
-  display: inline-block;
-}
-
-.pagination a {
-  color: white;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  border-radius: 50%;
-}
-
-.pagination a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.pagination a:hover:not(.active) {
-  background-color: #ddd;
-}
-
-.gallery {
-  display: grid;
-  gap: 1rem;
-  grid-auto-rows: 22rem;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: auto 100px 1fr 2fr;
-  grid-gap: 10px;
-  padding: 150px;
-}
-
-.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 20px 0;
-  font-size: 30px;
-  border-radius: 30px;
 }
 
 .color-text {
   color: black;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 400px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 50px;
-}
+
+
+
+

@@ -3,6 +3,7 @@ import { getDogDetail } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import estilos from "./detailDog.module.css"
 
 export default function DetailDog() {
   const dispatch = useDispatch();
@@ -15,12 +16,12 @@ export default function DetailDog() {
 
   return (
     <div>
-      <div className="grid-container">
+      <div className={estilos.containerDog}>
         <div key={dog[0].id}>
           <img
-            className="img-container"
+            className={estilos.imgContainer}
             src={dog[0].image}
-            alt="una imágen"
+            alt={dog[0].name}
             width="100px"
             height="100px"
           />
@@ -31,7 +32,7 @@ export default function DetailDog() {
       </div>
       <div>
         <Link to="/home">
-          <button>Volver al Home</button>
+          <button className="button-28">Volver al Home</button>
         </Link>
       </div>
     </div>

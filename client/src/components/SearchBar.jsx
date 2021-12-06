@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getDogName } from "../actions";
+import estilos from "./searchBar.module.css"
 
 export default function SearchBar() {
   const [input, setInput] = useState("");
@@ -17,14 +18,23 @@ export default function SearchBar() {
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Ingresa una raza"
-        onChange={(e) => handleInputChange(e)}
-      />
-      <button type="submit" onClick={(e) => handleSubmit(e)}>
-        Buscar
-      </button>
+      <div>
+        <input
+          type="text"
+          placeholder="Ingresa una raza"
+          className={estilos.searchBar}
+          onChange={(e) => handleInputChange(e)}
+        />
+      </div>
+      <div>
+        <button
+          type="submit"
+          className={estilos.buttonSearch}
+          onClick={(e) => handleSubmit(e)}
+        >
+          Buscar
+        </button>
+      </div>
     </div>
   );
 }

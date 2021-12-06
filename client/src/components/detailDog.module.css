@@ -1,0 +1,29 @@
+.containerDog {
+  display: flex;
+  justify-content: center;
+  float: none;
+  padding: 30px;
+  width: 40%;
+  margin: 5px;
+  margin-left: 29%;
+  margin-right: 30%;
+}
+
+.containerDog > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+  border-radius: 30px;
+}
+
+.containerDog:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.imgContainer {
+  width: 280px;
+  height: 250px;
+  border-radius: 3%;
+}
