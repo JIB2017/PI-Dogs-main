@@ -28,6 +28,7 @@ export default function DetailDog() {
           <h3>Nombre: "{dog[0].name}"</h3>
           <h3>Personalidades: "{dog[0].temperament}"</h3>
           <h3>Peso: "{dog[0].weight}"</h3>
+          <h3>Esperanza de vida: "{dog[0].life_span}"</h3>
         </div>
       </div>
       <div>

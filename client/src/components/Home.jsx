@@ -43,8 +43,10 @@ export default function Home() {
   // Filtrar por temperamento
   const handleFiltered = (e) => {
     const value = e.target.value;
-    if (value !== "todos") dispatch(filterByTemperament(e.target.value));
-    else dispatch(getDogs());
+    if (value !== "todos") {
+      dispatch(filterByTemperament(e.target.value));
+      setPage(1);
+    } else dispatch(getDogs());
   };
   // Ordenarlos alfabéticamente
   const handleOrder = (e) => {

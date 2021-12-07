@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getDogName } from "../actions";
-import estilos from "./searchBar.module.css"
+import estilos from "./searchBar.module.css";
 
 export default function SearchBar() {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
 
   function handleInputChange(e) {
+    e.preventDefault();
     setInput(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(getDogName(input));
+    if (input !== "") {
+      dispatch(getDogName(input));
+      setInput("");
+    } else alert("Debe ingresar una raza");
   }
 
   return (
