@@ -67,21 +67,23 @@ function rootReducer(state = initialState, action) {
         dogs: orderTrick,
       };
     case "FILTER_BY_WEIGHT":
-      let weight =
-        action.payload === "ASC"
-          ? state.dogs.sort((a, b) => {
-              if (a.weight[0] > b.weight[0]) return 1;
-              if (a.weight[0] < b.weight[0]) return -1;
-              return 0;
-            })
-          : state.dogs.sort((a, b) => {
-              if (a.weight[0] > b.weight[0]) return -1;
-              if (a.weight[0] < b.weight[0]) return 1;
-              return 0;
-            });
+      let weightAsc = state.dogs.sort((a, b) => {
+          if (a.weight.split(" - ").splice(0,2) > b.weight.split(" - ").splice(0,2)) return 1;
+          if (a.weight.split(" - ").splice(0,2) > b.weight.split(" - ").splice(0,2)) return -1;
+          return 0;
+        
+        //a.weight.split(" - ")[0]   b.weight.split(" - ")[0]
+      });
+      let weightDesc = state.dogs.sort((a, b) => {
+          if (a.weight.split(" - ").splice(0,2) > b.weight.split(" - ").splice(0,2)) return -1;
+          if (a.weight.split(" - ").splice(0,2) > b.weight.split(" - ").splice(0,2)) return 1;
+          return 0;
+        
+      });
+      console.log(weightAsc);
       return {
         ...state,
-        dogs: weight,
+        dogs: action.payload === "ASC" ? weightAsc : weightDesc,
       };
     default:
       return state;

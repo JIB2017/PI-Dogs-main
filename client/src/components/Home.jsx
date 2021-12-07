@@ -57,6 +57,8 @@ export default function Home() {
   const handleWeight = (e) => {
     const value = e.target.value;
     if (value !== "nada") dispatch(filterByWeight(e.target.value));
+    //setPage(1)
+    setOrder(`Ordenado ${e.target.value}`);
   };
 
   const handleApi = (e) => {
@@ -109,7 +111,7 @@ export default function Home() {
         </select>
         {/* ORDEN POR PESO */}
         <select className={estilos.control} onChange={handleWeight}>
-          <option value="nada">Odernar por peso</option>
+          <option value="nada">Ordenar por peso</option>
           <option value="ASC">Ascendente</option>
           <option value="DESC">Descendente</option>
         </select>

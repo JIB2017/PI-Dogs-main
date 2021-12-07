@@ -55,7 +55,7 @@ export function filterByTemperament(payload) {
 }
 
 export function filterByCreated(payload) {
-  console.log(payload)
+  console.log(payload);
   return {
     type: "FILTER_BY_CREATED",
     payload,
@@ -63,7 +63,7 @@ export function filterByCreated(payload) {
 }
 
 export function filterByOrder(payload) {
-  console.log(payload)
+  console.log(payload);
   return {
     type: "FILTER_BY_ORDER",
     payload,
