@@ -67,23 +67,31 @@ function rootReducer(state = initialState, action) {
         dogs: orderTrick,
       };
     case "FILTER_BY_WEIGHT":
-      let weightAsc = state.dogs.sort((a, b) => {
-          if (a.weight.split(" - ").splice(0,2) > b.weight.split(" - ").splice(0,2)) return 1;
-          if (a.weight.split(" - ").splice(0,2) > b.weight.split(" - ").splice(0,2)) return -1;
-          return 0;
-        
-        //a.weight.split(" - ")[0]   b.weight.split(" - ")[0]
-      });
-      let weightDesc = state.dogs.sort((a, b) => {
-          if (a.weight.split(" - ").splice(0,2) > b.weight.split(" - ").splice(0,2)) return -1;
-          if (a.weight.split(" - ").splice(0,2) > b.weight.split(" - ").splice(0,2)) return 1;
-          return 0;
-        
-      });
-      console.log(weightAsc);
+      let array =
+        action.payload === "ASC"
+          ? state.dogs.sort((a, b) => {
+              return (
+                (a.weight.split(" - ")[0] !== "NaN"
+                  ? a.weight.split(" - ")[0]
+                  : 10) -
+                (b.weight.split(" - ")[0] !== "NaN"
+                  ? b.weight.split(" - ")[0]
+                  : 10)
+              );
+            })
+          : state.dogs.sort((a, b) => {
+              return (
+                (b.weight.split(" - ")[0] !== "NaN"
+                  ? b.weight.split(" - ")[0]
+                  : 10) -
+                (a.weight.split(" - ")[0] !== "NaN"
+                  ? a.weight.split(" - ")[0]
+                  : 10)
+              );
+            });
       return {
         ...state,
-        dogs: action.payload === "ASC" ? weightAsc : weightDesc,
+        dogs: array,
       };
     default:
       return state;

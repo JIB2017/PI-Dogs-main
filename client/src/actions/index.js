@@ -71,7 +71,6 @@ export function filterByOrder(payload) {
 }
 
 export function filterByWeight(payload) {
-  //console.log(payload.charAt(0))
   return {
     type: "FILTER_BY_WEIGHT",
     payload,

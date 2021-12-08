@@ -58,9 +58,11 @@ export default function Home() {
   // Ordenarlos por peso
   const handleWeight = (e) => {
     const value = e.target.value;
-    if (value !== "nada") dispatch(filterByWeight(e.target.value));
-    //setPage(1)
-    setOrder(`Ordenado ${e.target.value}`);
+    if (value !== "nada") {
+      dispatch(filterByWeight(e.target.value));
+      setPage(1);
+      setOrder(`Ordenado ${e.target.value}`);
+    } else setOrder("Sin cambios");
   };
 
   const handleApi = (e) => {
