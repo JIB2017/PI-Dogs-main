@@ -240,7 +240,7 @@ export default function CreateDog() {
             </div>
           })}
       </div>
-      <div className={estilos.volver}>
+      <div>
         <Link to="/home">
           <button className={estilos.btn}>Volver al Home</button>
         </Link>
