@@ -50,7 +50,7 @@ function validate(input) {
   if (input.temperament.length <= 2) {
     errors.temperament = "Se necesitan al menos tres(3) personalidades";
   }
-  
+
   return errors;
 }
 
@@ -71,21 +71,21 @@ export default function CreateDog() {
   });
 
   const [error, setError] = useState({});
-  
+
   const handleInputChange = (e) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
-    
+
     setError(
       validate({
         ...input,
         [e.target.name]: e.target.value,
       })
-      );
-      
-      console.log(Object.keys(error).length);
+    );
+    // console.log(input.temperament.join(', '))
+    // console.log(Object.keys(error).length);
     // console.log(input);
   };
 
@@ -98,7 +98,7 @@ export default function CreateDog() {
       weight: weight,
       life_span: input.lifeSpan,
       image: input.image,
-      temperament: input.temperament,
+      temperament: input.temperament.join(", "),
     };
 
     return complete;
@@ -162,6 +162,7 @@ export default function CreateDog() {
       <div>
         <form className={estilos.form} onSubmit={handleSubmit}>
           <h1>Formulario</h1>
+          {error.name && <p>{error.name}</p>}
           <input
             type="text"
             name="name"
@@ -170,7 +171,7 @@ export default function CreateDog() {
             value={input.name}
             onChange={handleInputChange}
           ></input>
-          {error.name && <p>{error.name}</p>}
+          {error.minHeight && <p>{error.minHeight}</p>}
           <input
             type="text"
             name="minHeight"
@@ -179,7 +180,7 @@ export default function CreateDog() {
             value={input.minHeight}
             onChange={handleInputChange}
           ></input>
-          {error.minHeight && <p>{error.minHeight}</p>}
+          {error.maxHeight && <p>{error.maxHeight}</p>}
           <input
             type="text"
             name="maxHeight"
@@ -188,7 +189,7 @@ export default function CreateDog() {
             value={input.maxHeight}
             onChange={handleInputChange}
           ></input>
-          {error.maxHeight && <p>{error.maxHeight}</p>}
+          {error.minWeight && <p>{error.minWeight}</p>}
           <input
             type="text"
             name="minWeight"
@@ -197,7 +198,7 @@ export default function CreateDog() {
             value={input.minWeight}
             onChange={handleInputChange}
           ></input>
-          {error.minWeight && <p>{error.minWeight}</p>}
+          {error.maxWeight && <p>{error.maxWeight}</p>}
           <input
             type="text"
             name="maxWeight"
@@ -206,7 +207,7 @@ export default function CreateDog() {
             value={input.maxWeight}
             onChange={handleInputChange}
           ></input>
-          {error.maxWeight && <p>{error.maxWeight}</p>}
+          {error.lifeSpan && <p>{error.lifeSpan}</p>}
           <input
             type="text"
             name="lifeSpan"
@@ -215,7 +216,7 @@ export default function CreateDog() {
             value={input.lifeSpan}
             onChange={handleInputChange}
           ></input>
-          {error.lifeSpan && <p>{error.lifeSpan}</p>}
+          {error.image && <p>{error.image}</p>}
           <input
             type="text"
             name="image"
@@ -224,8 +225,8 @@ export default function CreateDog() {
             value={input.image}
             onChange={handleInputChange}
           ></input>
-          {error.image && <p>{error.image}</p>}
           {/* LISTA SELECT DE TEMPERAMENTOS */}
+          {error.temperament && <p>{error.temperament}</p>}
           <select className={estilos.select} onChange={handleTemperament}>
             <option value="elegir">Elige tres(3) o mas personalidades</option>
             {temperaments?.map((t) => (
