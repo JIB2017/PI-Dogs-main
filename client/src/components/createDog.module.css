@@ -56,18 +56,16 @@ input:focus {
   width: 100%;
 }
 
-h1 {
-  margin-bottom: 20px;
-  font-style: oblique;
-}
-
-h2 {
-  color: #a7a2d3;
-}
-
 li {
   display: inline-block;
 }
+
+p {
+  color: #b33636;
+  float: inline-start;
+}
+
+
 
 .btn {
   appearance: none;
@@ -116,10 +114,14 @@ li {
   transform: translateY(0);
 }
 
+.p {
+  color: #f2796e;
+}
+
 .delete {
   appearance: none;
   background-color: transparent;
-  border: 2px solid #b33636;
+  border: 2px solid #f2796e;
   border-radius: 15px;
   box-sizing: border-box;
   color: #fff;
@@ -153,7 +155,7 @@ li {
 
 .delete:hover {
   color: #fff;
-  background-color: #4caf50;
+  background-color: #f2796e;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
 }

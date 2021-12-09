@@ -50,7 +50,7 @@ function validate(input) {
   if (input.temperament.length <= 2) {
     errors.temperament = "Se necesitan al menos tres(3) personalidades";
   }
-
+  
   return errors;
 }
 
@@ -71,25 +71,42 @@ export default function CreateDog() {
   });
 
   const [error, setError] = useState({});
-
+  
   const handleInputChange = (e) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
-
+    
     setError(
       validate({
         ...input,
         [e.target.name]: e.target.value,
       })
-    );
+      );
+      
+      console.log(Object.keys(error).length);
+    // console.log(input);
+  };
 
-    console.log(input);
+  const correccion = (input) => {
+    let height = `${input.minHeight} - ${input.maxHeight}`;
+    let weight = `${input.minWeight} - ${input.maxWeight}`;
+    let complete = {
+      name: input.name,
+      height: height,
+      weight: weight,
+      life_span: input.lifeSpan,
+      image: input.image,
+      temperament: input.temperament,
+    };
+
+    return complete;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // verifico que todo esté en orden
     if (
       input.name !== "" &&
       input.minHeight !== "" &&
@@ -99,9 +116,11 @@ export default function CreateDog() {
       input.lifeSpan !== "" &&
       input.image !== "" &&
       input.temperament.length !== 0 &&
-      Object.keys(error).length !== 0
+      Object.keys(error).length === 0
     ) {
-      dispatch(postDog(input));
+      // en caso positivo prosigo
+      let dogi = correccion(input);
+      dispatch(postDog(dogi));
       setInput({
         name: "",
         minHeight: "",
@@ -112,13 +131,14 @@ export default function CreateDog() {
         image: "",
         temperament: [],
       });
-      alert("Congratulations, your dog was created!!!");
+      alert("Felicidades, tu perro ha sido creado!!!");
       navigate("/home");
+      // en caso negativo detengo al usuario
     } else {
       alert("No pueden quedar campos vacíos en el formulario");
     }
   };
-  // para qué me sirve esto en el select???
+
   const handleTemperament = (e) => {
     setInput({
       ...input,
@@ -150,9 +170,7 @@ export default function CreateDog() {
             value={input.name}
             onChange={handleInputChange}
           ></input>
-          { error.name && (
-            <p>{error.name}</p>
-          )}
+          {error.name && <p>{error.name}</p>}
           <input
             type="text"
             name="minHeight"
@@ -161,9 +179,7 @@ export default function CreateDog() {
             value={input.minHeight}
             onChange={handleInputChange}
           ></input>
-          { error.minHeight && (
-            <p>{error.minHeight}</p>
-          )}
+          {error.minHeight && <p>{error.minHeight}</p>}
           <input
             type="text"
             name="maxHeight"
@@ -172,9 +188,7 @@ export default function CreateDog() {
             value={input.maxHeight}
             onChange={handleInputChange}
           ></input>
-          { error.maxHeight && (
-            <p>{error.maxHeight}</p>
-          )}
+          {error.maxHeight && <p>{error.maxHeight}</p>}
           <input
             type="text"
             name="minWeight"
@@ -183,9 +197,7 @@ export default function CreateDog() {
             value={input.minWeight}
             onChange={handleInputChange}
           ></input>
-          { error.minWeight && (
-            <p>{error.minWeight}</p>
-          )}
+          {error.minWeight && <p>{error.minWeight}</p>}
           <input
             type="text"
             name="maxWeight"
@@ -194,9 +206,7 @@ export default function CreateDog() {
             value={input.maxWeight}
             onChange={handleInputChange}
           ></input>
-          { error.maxWeight && (
-            <p>{error.maxWeight}</p>
-          )}
+          {error.maxWeight && <p>{error.maxWeight}</p>}
           <input
             type="text"
             name="lifeSpan"
@@ -205,9 +215,7 @@ export default function CreateDog() {
             value={input.lifeSpan}
             onChange={handleInputChange}
           ></input>
-          { error.lifeSpan && (
-            <p>{error.lifeSpan}</p>
-          )}
+          {error.lifeSpan && <p>{error.lifeSpan}</p>}
           <input
             type="text"
             name="image"
@@ -216,30 +224,40 @@ export default function CreateDog() {
             value={input.image}
             onChange={handleInputChange}
           ></input>
-          { error.image && (
-            <p>{error.image}</p>
-          )}
+          {error.image && <p>{error.image}</p>}
+          {/* LISTA SELECT DE TEMPERAMENTOS */}
           <select className={estilos.select} onChange={handleTemperament}>
-            <option>Elige una o varias personalidades</option>
-            {temperaments?.map((t) => {
-              return (
-                <option value={t.name} key={t.id}>
-                  {t.name}
-                </option>
-              );
-            })}
+            <option value="elegir">Elige tres(3) o mas personalidades</option>
+            {temperaments?.map((t) => (
+              <option value={t.name} key={t.id}>
+                {t.name}
+              </option>
+            ))}
           </select>
+          {/* MAPEO LOS TEMPERAMENTOS SELECCIONADOS CON SUS RESPECTIVOS BOTONES */}
+          {input.temperament.map((t) => (
+            <div key={t.id}>
+              <button
+                type="button"
+                className={estilos.delete}
+                onClick={() => handleDelete(t)}
+              >
+                X
+              </button>
+              <ul>
+                <li>
+                  <p className={estilos.p}>{t}</p>
+                </li>
+              </ul>
+            </div>
+          ))}
+          {/* BOTÓN DE SUBMIT */}
           <button type="submit" className={estilos.btnSubmit}>
             Crear
           </button>
         </form>
-          {input.temperament?.map((t) => {
-            <div>
-              <p>{t}</p>
-              <button className={estilos.delete} onClick={handleDelete}>x</button>
-            </div>
-          })}
       </div>
+      {/* BOTÓN PARA VOLVER AL HOME */}
       <div>
         <Link to="/home">
           <button className={estilos.btn}>Volver al Home</button>
