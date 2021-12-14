@@ -33,7 +33,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getTemperaments());
-  }, []);
+  }, [dispatch]);
   // Volver a mostrar todos los perros
   const handleClickDogs = (e) => {
     e.preventDefault();
@@ -128,7 +128,7 @@ export default function Home() {
                 id={dog.id}
                 image={dog.image}
                 name={dog.name}
-                temperament={dog.temperament}
+                temperament={dog.temperament ? dog.temperament :  dog.temperaments[0].name}
                 weight={dog.weight}
                 key={dog.id}
               />

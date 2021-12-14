@@ -55,7 +55,6 @@ export function filterByTemperament(payload) {
 }
 
 export function filterByCreated(payload) {
-  console.log(payload);
   return {
     type: "FILTER_BY_CREATED",
     payload,

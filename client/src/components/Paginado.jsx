@@ -15,11 +15,11 @@ export default function Paginado({ allDogs, paged, page }) {
           return (
             <li className={estilos.pagination} key={nro}>
               {page === nro ? (
-                <a className={estilos.active} onClick={() => paged(nro)}>
+                <button className={estilos.active} onClick={() => paged(nro)}>
                   {nro}
-                </a>
+                </button>
               ) : (
-                <a onClick={() => paged(nro)}>{nro}</a>
+                <button onClick={() => paged(nro)}>{nro}</button>
               )}
             </li>
           );

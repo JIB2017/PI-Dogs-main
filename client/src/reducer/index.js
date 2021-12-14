@@ -32,8 +32,7 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
     case "FILTER_BY_TEMP":
-      let filterU = state.allDogs.filter((x) => x.temperament !== undefined);
-      let tempsFiltered = filterU.filter((el) =>
+      let tempsFiltered = state.allDogs.filter((el) =>
         el.temperament.includes(action.payload)
       );
       return {

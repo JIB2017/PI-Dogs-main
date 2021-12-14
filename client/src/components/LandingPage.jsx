@@ -5,7 +5,7 @@ import estilos from "./landingPage.module.css"
 export default function LandingPage() {
   return (
     <div>
-      <h1>Dogs landing page</h1>
+      <h1>Henry Dogs</h1>
       <Link to="/home">
         <button className={estilos.btn}>Ir a la página principal</button>
       </Link>
