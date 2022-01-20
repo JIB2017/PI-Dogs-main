@@ -53,7 +53,7 @@ export default function Home() {
     const value = e.target.value;
     if (value !== "nada") dispatch(filterByOrder(e.target.value));
     // setPage(1);
-    setOrder(`Ordenado ${e.target.value}`);
+    setOrder(`Ordenado ${e.target.value} + ${order}`);
   };
   // Ordenarlos por peso
   const handleWeight = (e) => {
@@ -128,7 +128,7 @@ export default function Home() {
                 id={dog.id}
                 image={dog.image}
                 name={dog.name}
-                temperament={dog.temperament ? dog.temperament :  dog.temperaments[0].name}
+                temperament={dog.temperament ? dog.temperament :  dog.temperaments.map(el => el.name)}
                 weight={dog.weight}
                 key={dog.id}
               />

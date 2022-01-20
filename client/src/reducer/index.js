@@ -33,7 +33,9 @@ function rootReducer(state = initialState, action) {
       };
     case "FILTER_BY_TEMP":
       let tempsFiltered = state.allDogs.filter((el) =>
-        el.temperament.includes(action.payload)
+         el.temperament
+          ? el.temperament.includes(action.payload) // api
+          : el.temperaments.map((el) => el.name.includes(action.payload)) // db
       );
       return {
         ...state,

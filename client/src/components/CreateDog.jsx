@@ -47,8 +47,8 @@ function validate(input) {
     errors.image = "Tiene que ser una Url válida";
   }
   // PERSONALIDADES
-  if (input.temperament.length <= 2) {
-    errors.temperament = "Se necesitan al menos tres(3) personalidades";
+  if (input.temperaments.length <= 2) {
+    errors.temperaments = "Se necesitan al menos tres(3) personalidades";
   }
 
   return errors;
@@ -67,7 +67,7 @@ export default function CreateDog() {
     maxWeight: "",
     lifeSpan: "",
     image: "",
-    temperament: [],
+    temperaments: [],
   });
 
   const [error, setError] = useState({});
@@ -98,7 +98,7 @@ export default function CreateDog() {
       weight: weight,
       life_span: input.lifeSpan,
       image: input.image,
-      temperament: input.temperament.join(", "),
+      temperaments: input.temperaments.join(", "),
     };
 
     return complete;
@@ -115,7 +115,7 @@ export default function CreateDog() {
       input.maxWeight !== "" &&
       input.lifeSpan !== "" &&
       input.image !== "" &&
-      input.temperament.length !== 0 &&
+      input.temperaments.length !== 0 &&
       Object.keys(error).length === 0
     ) {
       // en caso positivo prosigo
@@ -129,7 +129,7 @@ export default function CreateDog() {
         maxWeight: "",
         lifeSpan: "",
         image: "",
-        temperament: [],
+        temperaments: [],
       });
       alert("Felicidades, tu perro ha sido creado!!!");
       navigate("/home");
@@ -140,16 +140,18 @@ export default function CreateDog() {
   };
 
   const handleTemperament = (e) => {
+    console.log(typeof input.temperaments[0]);
     setInput({
       ...input,
-      temperament: [...input.temperament, e.target.value],
+      temperaments: [...input.temperaments, e.target.value],
     });
+    console.log(input.temperaments);
   };
 
   const handleDelete = (e) => {
     setInput({
       ...input,
-      temperament: input.temperament.filter((t) => t !== e),
+      temperaments: input.temperaments.filter((t) => t !== e),
     });
   };
 
@@ -226,22 +228,24 @@ export default function CreateDog() {
             onChange={handleInputChange}
           ></input>
           {/* LISTA SELECT DE TEMPERAMENTOS */}
-          {error.temperament && <p>{error.temperament}</p>}
+          {error.temperaments && <p>{error.temperaments}</p>}
           <select className={estilos.select} onChange={handleTemperament}>
             <option value="elegir">Elige tres(3) o mas personalidades</option>
-            {temperaments?.map((t) => (
-              <option value={t.name} key={t.id}>
-                {t.name}
-              </option>
-            ))}
+            {temperaments?.map((t) => {
+              return (
+                <option value={t.name} key={t.id}>
+                  {t.name}
+                </option>
+              );
+            })}
           </select>
           {/* MAPEO LOS TEMPERAMENTOS SELECCIONADOS CON SUS RESPECTIVOS BOTONES */}
-          {input.temperament.map((t) => (
+          {input.temperaments.map((t) => (
             <div key={t.id}>
               <button
                 type="button"
                 className={estilos.delete}
-                onClick={() => handleDelete(t)}
+                onClick={(t) => handleDelete(t)}
               >
                 X
               </button>
