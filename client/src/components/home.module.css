@@ -14,7 +14,7 @@
 .btn {
   appearance: none;
   background-color: transparent;
-  border: 2px solid #4caf50;
+  border: 2px solid #74ff78;
   border-radius: 15px;
   box-sizing: border-box;
   color: #fff;
@@ -49,6 +49,7 @@
 .btn:hover {
   color: #fff;
   background-color: #4caf50;
+  border: 2px solid #4caf50;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
 }
@@ -62,7 +63,7 @@
   position: absolute;
   appearance: none;
   background-color: transparent;
-  border: 2px solid #0fc2c2;
+  border: 2px solid #14ffff;
   border-radius: 15px;
   box-sizing: border-box;
   color: #fff;
@@ -97,6 +98,7 @@
 .btncreate:hover {
   color: #fff;
   background-color: #0fc2c2;
+  border: 2px solid #0fc2c2;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
 }
@@ -104,4 +106,11 @@
 .btncreate:active {
   box-shadow: none;
   transform: translateY(0);
+}
+
+.cards {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 23% 23% 23% 23%;
+  gap: 20px;
 }

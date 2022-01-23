@@ -84,9 +84,7 @@ export default function CreateDog() {
         [e.target.name]: e.target.value,
       })
     );
-    // console.log(input.temperament.join(', '))
-    // console.log(Object.keys(error).length);
-    // console.log(input);
+    console.log(input.temperaments);
   };
 
   const correccion = (input) => {
@@ -98,7 +96,7 @@ export default function CreateDog() {
       weight: weight,
       life_span: input.lifeSpan,
       image: input.image,
-      temperaments: input.temperaments.join(", "),
+      temperaments: input.temperaments,
     };
 
     return complete;
@@ -140,12 +138,10 @@ export default function CreateDog() {
   };
 
   const handleTemperament = (e) => {
-    console.log(typeof input.temperaments[0]);
     setInput({
       ...input,
       temperaments: [...input.temperaments, e.target.value],
     });
-    console.log(input.temperaments);
   };
 
   const handleDelete = (e) => {
@@ -230,37 +226,33 @@ export default function CreateDog() {
           {/* LISTA SELECT DE TEMPERAMENTOS */}
           {error.temperaments && <p>{error.temperaments}</p>}
           <select className={estilos.select} onChange={handleTemperament}>
-            <option value="elegir">Elige tres(3) o mas personalidades</option>
+            <option value="">Elige tres(3) o mas personalidades</option>
             {temperaments?.map((t) => {
               return (
-                <option value={t.name} key={t.id}>
+                <option value={t.name} name="temperaments" key={t.id}>
                   {t.name}
                 </option>
               );
             })}
           </select>
-          {/* MAPEO LOS TEMPERAMENTOS SELECCIONADOS CON SUS RESPECTIVOS BOTONES */}
-          {input.temperaments.map((t) => (
-            <div key={t.id}>
-              <button
-                type="button"
-                className={estilos.delete}
-                onClick={(t) => handleDelete(t)}
-              >
-                X
-              </button>
-              <ul>
-                <li>
-                  <p className={estilos.p}>{t}</p>
-                </li>
-              </ul>
-            </div>
-          ))}
           {/* BOTÓN DE SUBMIT */}
           <button type="submit" className={estilos.btnSubmit}>
             Crear
           </button>
         </form>
+        {/* MAPEO LOS TEMPERAMENTOS SELECCIONADOS CON SUS RESPECTIVOS BOTONES */}
+        {input.temperaments?.map((t) => (
+          <div key={t}>
+            <button className={estilos.delete} onClick={(t) => handleDelete(t)}>
+              X
+            </button>
+            <ul>
+              <li>
+                <p className={estilos.p}>{t}</p>
+              </li>
+            </ul>
+          </div>
+        ))}
       </div>
       {/* BOTÓN PARA VOLVER AL HOME */}
       <div>

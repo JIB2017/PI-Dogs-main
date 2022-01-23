@@ -121,20 +121,26 @@ export default function Home() {
         </select>
         <h2>Lista de perros</h2>
         {<Paginado allDogs={allDogs.length} paged={paged} page={page} />}
-        {pages?.map((dog) => {
-          return (
-            <div key={dog.id}>
-              <Card
-                id={dog.id}
-                image={dog.image}
-                name={dog.name}
-                temperament={dog.temperament ? dog.temperament :  dog.temperaments.map(el => el.name)}
-                weight={dog.weight}
-                key={dog.id}
-              />
-            </div>
-          );
-        })}
+        <div className={estilos.cards}>
+          {pages?.map((dog) => {
+            return (
+              <div key={dog.id}>
+                <Card
+                  id={dog.id}
+                  image={dog.image}
+                  name={dog.name}
+                  temperament={
+                    dog.temperament
+                      ? dog.temperament
+                      : dog.temperaments.map((el) => el.name + " ")
+                  }
+                  weight={dog.weight}
+                  key={dog.id}
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

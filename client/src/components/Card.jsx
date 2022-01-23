@@ -7,16 +7,11 @@ export default function Card({ id, image, name, temperament, weight }) {
     <div className={estilos.gridcontainer}>
       <div key={id}>
         <Link to={`/home/${id}`}>
-          <img
-            src={image}
-            alt={name}
-          />
+          <img src={image} alt={name} />
         </Link>
-        <div className={estilos.desc}>
-            <h6>Nombre: "{name}"</h6>
-            <h6>Personalidades: "{temperament}"</h6>
-            <h6>Peso: "{weight}"</h6>
-        </div>
+        <h6>Nombre: "{name}"</h6>
+        <h6>Personalidades: "{temperament}"</h6>
+        <h6>Peso: "{weight}"</h6>
       </div>
     </div>
   );

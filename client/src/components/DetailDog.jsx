@@ -26,7 +26,7 @@ export default function DetailDog() {
             height="100px"
           />
           <h3>Nombre: "{dog[0].name}"</h3>
-          <h3>Personalidades: "{typeof dog[0].temperament === "string" ? dog[0].temperament : dog[0].temperaments.map(el => el.name)}"</h3>
+          <h3>Personalidades: "{typeof dog[0].temperament === "string" ? dog[0].temperament : dog[0].temperaments.map(el => el.name + " ")}"</h3>
           <h3>Peso: "{dog[0].weight}"</h3>
           <h3>Esperanza de vida: "{dog[0].life_span}"</h3>
         </div>
@@ -36,6 +36,7 @@ export default function DetailDog() {
           <button className={estilos.btn}>Volver al Home</button>
         </Link>
       </div>
+      {console.log(dog[0].temperaments)}
     </div>
   );
 }
