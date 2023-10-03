@@ -6,11 +6,12 @@ const { Dog, Temperament } = require("../db");
 
 const router = Router();
 const { API_KEY } = process.env.REACT_APP_API_KEY;
+const URL = process.env.URL;
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
 // este va para el 1° y para el 2°
-router.get("/dogs", async (request, response) => {
+router.get("/dogs", async (request, response, next) => {
   try {
     // me guardo la query
     const name = request.query.name;
@@ -37,7 +38,7 @@ router.get("/dogs", async (request, response) => {
   }
 });
 
-router.get("/dogs/:id", async (request, response) => {
+router.get("/dogs/:id", async (request, response, next) => {
   try {
     // me guardo la query id
     const id = request.params.id;
@@ -60,7 +61,7 @@ router.get("/dogs/:id", async (request, response) => {
   }
 });
 
-router.get("/temperament", async (request, response) => {
+router.get("/temperament", async (request, response, next) => {
   try {
     // const allDogs = await getAll()
     // const temperament = await allDogs.filter()
@@ -120,9 +121,7 @@ router.post("/dog", async (request, response, next) => {
 // Pido información de la Api
 const getApiInfo = async () => {
   // Accedo a la api con su header como me piden desde dog
-  const apiInfo = await axios.get("https://api.thedogapi.com/v1/breeds", {
-    headers: { "x-api.key": `${API_KEY}` },
-  });
+  const apiInfo = await axios.get(`${URL}`);
   // Y lo mapeo con los datos que quiero
   const apiDog = await apiInfo.data.map((info) => {
     return {
@@ -136,6 +135,7 @@ const getApiInfo = async () => {
       image: info.image.url,
     };
   });
+  console.log(apiDog);
   return apiDog;
 };
 

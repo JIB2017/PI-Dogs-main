@@ -123,6 +123,7 @@ export default function Home() {
         {<Paginado allDogs={allDogs.length} paged={paged} page={page} />}
         <div className={estilos.cards}>
           {pages?.map((dog) => {
+            // console.log(dog.image);
             return (
               <div key={dog.id}>
                 <Card
